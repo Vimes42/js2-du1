@@ -12,22 +12,28 @@ export const toppings = [
 
 
   export const renderToppings = () => {
-    const divElms = document.querySelectorAll(".topping");
-    
-    divElms.forEach((divElm, item) => {
-        divElm.addEventListener("click", () => {
-        if (item.selected){
-            divElm.innerHTML += `<h3 class="topping--selected"> ${item.name} </h3> <p class="topping--selected"> Cena: ${item.price},-Kč </p><br>`
-        } else {
-            divElm.innerHTML += `<h3> ${item.name} </h3> <p> Cena: ${item.price},-Kč </p><br>`
-        }
-    }) }) }
+    const divElm = document.querySelector(".topping");
+    const divElmItem = document.querySelectorAll(".topping");
 
+    toppings.forEach((item) => {
+        if (item.selected === true){
+            divElm.innerHTML += `<div class="topping-item topping--selected"> <h3> ${item.name} </h3> <p> Cena: ${item.price},-Kč </p></div><br>`
+        }else{
+            divElm.innerHTML += `<div class="topping-item"> <h3> ${item.name} </h3> <p> Cena: ${item.price},-Kč </p></div><br>`
+        }
+            
+        }
+   )    
+   
+   
+   divElm.addEventListener("click", (i) => {
+    toggleTopping(i);
+})
+}
+   
+   
 
 export const toggleTopping = (i) => {
-    if (toppings[i].selected === true){
-        return toppings[i].selected = false;
-    } else {
-        return toppings[i].selected = true;
+    const divElmItem = document.querySelector(".topping-item");
+    divElmItem.classList.toggle("topping--selected");
     }
-}
